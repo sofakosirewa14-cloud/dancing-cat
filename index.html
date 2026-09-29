@@ -2,80 +2,1853 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>😺 Танцующий котик</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>😺 Чиби-котик</title>
+
 <style>
-body{margin:0;background:#fff4e8;color:#5d3b2e;font-family:Arial,sans-serif;text-align:center}
-h1{margin:18px 0 5px;font-size:27px}
-p{color:#8a6657}
-.stage{margin:15px;height:45vh;min-height:280px;background:#ffe2c2;border-radius:28px;display:flex;align-items:center;justify-content:center}
-#cat{font-size:110px;border:0;background:none}
-.dance{animation:dance .22s infinite alternate}
-@keyframes dance{from{transform:rotate(-10deg) translateY(5px)}
-to{transform:rotate(10deg) translateY(-12px)}}
-button.play{background:#ff9b71;color:white;border:0;border-radius:18px;padding:13px 24px;font-size:19px;font-weight:bold}
-h3{margin-bottom:7px}
-.piano{display:flex;height:120px;margin:10px;gap:3px}
-.key{flex:1;background:white;border:1px solid #ccc;border-radius:0 0 9px 9px;font-size:12px}
-.key:active{background:#ffd8bd;transform:translateY(3px)}
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#ffe8d6;
+  color:#51372e;
+}
+
+h1{
+  text-align:center;
+  margin:15px 0 5px;
+}
+
+.subtitle{
+  text-align:center;
+  color:#80665c;
+}
+
+.panel{
+  background:#ffffffdd;
+  margin:12px;
+  padding:12px;
+  border-radius:20px;
+  box-shadow:0 5px 18px #0002;
+}
+
+.stage{
+  height:390px;
+  position:relative;
+  overflow:hidden;
+  border-radius:22px;
+  background:linear-gradient(
+    #91d8ff 0 60%,
+    #79c866 60%
+  );
+}
+
+.sun{
+  position:absolute;
+  right:25px;
+  top:20px;
+  font-size:60px;
+}
+
+.moon{
+  position:absolute;
+  left:25px;
+  top:20px;
+  font-size:55px;
+}
+
+.cloud{
+  position:absolute;
+  font-size:45px;
+}
+
+.cloud1{
+  left:12%;
+  top:70px;
+}
+
+.cloud2{
+  right:15%;
+  top:110px;
+}
+
+.road{
+  position:absolute;
+  bottom:-80px;
+  left:20%;
+  width:60%;
+  height:190px;
+  background:#666;
+  border-radius:50% 50% 0 0;
+}
+
+.cat{
+  position:absolute;
+  left:50%;
+  top:95px;
+  transform:translateX(-50%);
+  width:190px;
+  height:250px;
+  z-index:5;
+}
+
+.cat.dance1{
+  animation:dance1 .25s infinite alternate;
+}
+
+.cat.dance2{
+  animation:dance2 .5s infinite alternate;
+}
+
+.cat.dance3{
+  animation:dance3 .35s infinite alternate;
+}
+
+@keyframes dance1{
+  from{
+    transform:translateX(-50%) rotate(-9deg) translateY(4px);
+  }
+  to{
+    transform:translateX(-50%) rotate(9deg) translateY(-12px);
+  }
+}
+
+@keyframes dance2{
+  from{
+    transform:translateX(-50%) rotate(12deg);
+  }
+  to{
+    transform:translateX(-50%) rotate(-12deg) translateY(-10px);
+  }
+}
+
+@keyframes dance3{
+  from{
+    transform:translateX(-50%) translateX(-14px) rotate(-6deg);
+  }
+  to{
+    transform:translateX(-50%) translateX(14px) rotate(6deg);
+  }
+}
+
+.status{
+  text-align:center;
+  min-height:24px;
+  margin:8px;
+}
+
+button{
+  border:0;
+  border-radius:13px;
+  padding:10px 13px;
+  margin:3px;
+  background:#ffd7c2;
+  color:#50352d;
+  font-weight:bold;
+  font-size:14px;
+}
+
+button:active{
+  transform:scale(.95);
+}
+
+.primary{
+  background:#ff8968;
+  color:white;
+}
+
+.buttons{
+  text-align:center;
+}
+
+.section{
+  font-size:18px;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+
+#piano{
+  display:flex;
+  height:125px;
+  gap:3px;
+}
+
+.key{
+  flex:1;
+  background:white;
+  border:1px solid #bbb;
+  border-radius:0 0 10px 10px;
+}
+
+.key:active{
+  background:#ffc5a9;
+  transform:translateY(4px);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:5px;
+}
+
+.food{
+  font-size:27px;
+  min-height:55px;
+}
+
+.hidden{
+  display:none;
+}
+
+canvas{
+  width:100%;
+  height:250px;
+  background:white;
+  border-radius:15px;
+  touch-action:none;
+}
+
+select,input{
+  margin:5px;
+}
+
+footer{
+  text-align:center;
+  font-size:12px;
+  padding:15px;
+  color:#80665c;
+}
 </style>
 </head>
+
 <body>
 
-<h1>😺 Танцующий котик</h1>
-<p id="text">Нажми на котика!</p>
+<h1>😺 Чиби-котик</h1>
 
-<div class="stage">
-<button id="cat">😺</button>
+<div class="subtitle">
+Танцы • музыка • гардероб • еда • подарки
 </div>
 
-<button class="play" onclick="dance()">😸 ТАНЦУЙ!</button>
 
-<h3>🎹 Поиграй на пианино</h3>
-<div class="piano" id="piano"></div>
+<!-- СЦЕНА -->
+
+<div class="panel">
+
+<div class="stage" id="stage">
+
+<div class="sun" id="sun">☀️</div>
+<div class="moon hidden" id="moon">🌙</div>
+
+<div class="cloud cloud1">☁️</div>
+<div class="cloud cloud2">☁️</div>
+
+<div class="road hidden" id="road"></div>
+
+<div id="extraObjects"></div>
+
+
+<!-- ЧИБИ КОТ -->
+
+<div class="cat" id="cat">
+
+<svg viewBox="0 0 190 250">
+
+<!-- хвост -->
+
+<path
+d="M145 170
+Q180 155 158 125"
+fill="none"
+stroke="#f3ae69"
+stroke-width="15"
+stroke-linecap="round"
+/>
+
+
+<!-- тело -->
+
+<path
+d="
+M60 80
+Q38 60 45 35
+L70 50
+
+Q95 30 120 50
+L145 35
+Q152 60 130 80
+
+Q150 105 143 160
+Q137 205 95 210
+Q53 205 47 160
+Q40 105 60 80
+"
+fill="#f4b16b"
+stroke="#633f31"
+stroke-width="5"
+/>
+
+
+<!-- пузико -->
+
+<ellipse
+cx="95"
+cy="135"
+rx="32"
+ry="43"
+fill="#ffdda9"
+/>
+
+
+<!-- ушки -->
+
+<path
+d="M60 65 L53 34 L77 51"
+fill="#f4b16b"
+stroke="#633f31"
+stroke-width="5"
+/>
+
+<path
+d="M130 65 L137 34 L113 51"
+fill="#f4b16b"
+stroke="#633f31"
+stroke-width="5"
+/>
+
+
+<!-- глаза -->
+
+<circle cx="76" cy="92" r="7"/>
+<circle cx="114" cy="92" r="7"/>
+
+
+<!-- нос -->
+
+<path
+d="M91 106
+Q95 101 99 106
+Q95 112 91 106"
+fill="#e8757b"
+/>
+
+
+<!-- улыбка -->
+
+<path
+d="M86 116 Q95 125 104 116"
+fill="none"
+stroke="#633f31"
+stroke-width="3"
+/>
+
+
+<!-- лапки -->
+
+<path
+d="M59 120 Q32 135 48 158"
+fill="none"
+stroke="#f4b16b"
+stroke-width="17"
+stroke-linecap="round"
+/>
+
+<path
+d="M131 120 Q158 135 142 158"
+fill="none"
+stroke="#f4b16b"
+stroke-width="17"
+stroke-linecap="round"
+/>
+
+
+<!-- ножки -->
+
+<path
+d="M70 177 Q62 208 78 212"
+fill="none"
+stroke="#f4b16b"
+stroke-width="20"
+stroke-linecap="round"
+/>
+
+<path
+d="M120 177 Q128 208 112 212"
+fill="none"
+stroke="#f4b16b"
+stroke-width="20"
+stroke-linecap="round"
+/>
+
+<!-- одежда -->
+
+<g id="clothes"></g>
+
+<!-- рисунок -->
+
+<g id="catDrawing"></g>
+
+</svg>
+
+</div>
+
+</div>
+
+
+<div class="status" id="status">
+Нажми на танец! Каждый танец длится 15 секунд.
+</div>
+
+
+<div class="buttons">
+
+<button class="primary" onclick="dance(0)">
+💃 Танец 1
+</button>
+
+<button onclick="dance(1)">
+🕺 Танец 2
+</button>
+
+<button onclick="dance(2)">
+✨ Танец 3
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- МУЗЫКА -->
+
+<div class="panel">
+
+<div class="section">
+🎹 Музыка
+</div>
+
+<div id="piano"></div>
+
+<div class="buttons">
+
+<button onclick="setInstrument('piano')">
+🎹 Пианино
+</button>
+
+<button onclick="setInstrument('dizi')">
+🪈 Ди-цзы
+</button>
+
+<button onclick="setInstrument('drums')">
+🥁 Барабаны
+</button>
+
+<button onclick="setInstrument('harp')">
+🪕 Арфа
+</button>
+
+<button onclick="setInstrument('guitar')">
+🎸 Гитара
+</button>
+
+<button onclick="setInstrument('balalaika')">
+🪕 Балалайка
+</button>
+
+<button onclick="setInstrument('erhu')">
+🎻 Эрху
+</button>
+
+<button onclick="setInstrument('guqin')">
+🎶 Гуцинь
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- ГАРДЕРОБ -->
+
+<div class="panel">
+
+<div class="section">
+👗 Гардероб
+</div>
+
+<div class="buttons">
+
+<button onclick="putHat()">
+🎩 Шапка
+</button>
+
+<button onclick="putDress()">
+👗 Одежда
+</button>
+
+<button onclick="putGlasses()">
+🕶️ Аксессуар
+</button>
+
+<button onclick="removeClothes()">
+🧺 Снять
+</button>
+
+<br>
+
+<button onclick="saveClothes()">
+💾 Сохранить образ
+</button>
+
+<button onclick="loadClothes()">
+📂 Загрузить образ
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- РИСОВАНИЕ -->
+
+<div class="panel">
+
+<div class="section">
+🎨 Нарисуй одежду или аксессуар
+</div>
+
+<div class="buttons">
+
+Цвет:
+
+<input
+type="color"
+id="drawColor"
+value="#ff4f7b"
+/>
+
+Размер:
+
+<input
+type="range"
+id="brushSize"
+min="2"
+max="40"
+value="8"
+/>
+
+</div>
+
+
+<div class="buttons">
+
+<button onclick="drawMode='pen'">
+✏️ Ручка
+</button>
+
+<button onclick="drawMode='paint'">
+🖌️ Краска
+</button>
+
+<button onclick="drawMode='leopard'">
+🐆 Леопард
+</button>
+
+<button onclick="drawMode='cheetah'">
+🐆 Гепард
+</button>
+
+<button onclick="drawMode='snake'">
+🐍 Змея
+</button>
+
+<button onclick="drawMode='hearts'">
+💗 Сердечки
+</button>
+
+<button onclick="drawMode='flowers'">
+🌸 Цветы
+</button>
+
+<button onclick="drawMode='zebra'">
+🦓 Зебра
+</button>
+
+<button onclick="drawMode='fish'">
+🐟 Рыбки
+</button>
+
+</div>
+
+
+<canvas id="canvas"></canvas>
+
+
+<div class="buttons">
+
+<button onclick="clearCanvas()">
+🧽 Очистить
+</button>
+
+<button class="primary" onclick="putDrawingOnCat()">
+🐱 Надеть рисунок
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- ФОН -->
+
+<div class="panel">
+
+<div class="section">
+🌈 Создание фона
+</div>
+
+<div class="buttons">
+
+<button onclick="setBackground('day')">
+☀️ День
+</button>
+
+<button onclick="setBackground('night')">
+🌙 Ночь
+</button>
+
+<button onclick="setBackground('street')">
+🛣️ Улица
+</button>
+
+<button onclick="setBackground('park')">
+🌳 Парк
+</button>
+
+<button onclick="setBackground('home')">
+🏠 Дом
+</button>
+
+<button onclick="setBackground('club')">
+🪩 Ночной клуб
+</button>
+
+<br>
+
+<button onclick="addObject('🛣️')">
+🛣️ Дорога
+</button>
+
+<button onclick="addObject('☁️')">
+☁️ Облако
+</button>
+
+<button onclick="addObject('🏮')">
+🏮 Фонарь
+</button>
+
+<button onclick="addObject('🪑')">
+🪑 Лавочка
+</button>
+
+<button onclick="addObject('🌳')">
+🌳 Дерево
+</button>
+
+<button onclick="addObject('🏠')">
+🏠 Дом
+</button>
+
+</div>
+
+<br>
+
+<label>
+Свой цвет фона:
+<input
+type="color"
+onchange="customBackground(this.value)"
+/>
+</label>
+
+</div>
+
+
+
+<!-- ЕДА -->
+
+<div class="panel">
+
+<div class="section">
+🍽️ Бесконечная еда
+</div>
+
+<div class="buttons">
+
+<button
+class="primary"
+onclick="randomFood()"
+>
+🍴 Котик достаёт еду
+</button>
+
+</div>
+
+<div
+class="grid"
+id="foodGrid"
+>
+</div>
+
+<div
+class="status"
+id="foodStatus"
+>
+Выбери еду или нажми кнопку случайной еды.
+</div>
+
+</div>
+
+
+
+<!-- ПОДАРКИ -->
+
+<div class="panel">
+
+<div class="section">
+🎁 Подарки
+</div>
+
+<div class="buttons">
+
+<button
+class="primary"
+onclick="randomGift()"
+>
+🎁 Котик открывает подарок
+</button>
+
+<button
+onclick="giveGift()"
+>
+🎀 Подарок тебе
+</button>
+
+</div>
+
+<div
+class="status"
+id="giftStatus"
+>
+Котик приготовил сюрпризы!
+</div>
+
+</div>
+
+
+
+<!-- МИКРОФОН -->
+
+<div class="panel">
+
+<div class="section">
+🎤 Голос котика
+</div>
+
+<div class="status">
+Разреши микрофон, скажи что-нибудь,
+и котик повторит это изменённым голосом.
+</div>
+
+<div class="buttons">
+
+<button
+class="primary"
+onclick="startRecording()"
+>
+🎙️ Записать
+</button>
+
+<button onclick="stopRecording()">
+⏹ Стоп
+</button>
+
+</div>
+
+
+<div class="buttons">
+
+<button onclick="voiceType=0">
+🏋️ Качок
+</button>
+
+<button onclick="voiceType=1">
+👸 Принцесса
+</button>
+
+<button onclick="voiceType=2">
+👶 Малыш
+</button>
+
+<button onclick="voiceType=3">
+🧓 Старичок
+</button>
+
+<button onclick="voiceType=4">
+🧛 Вампир
+</button>
+
+<button onclick="voiceType=5">
+🐭 Мультяшный
+</button>
+
+<button onclick="voiceType=6">
+🎤 Вокалоид
+</button>
+
+<button onclick="voiceType=7">
+🤖 Робот
+</button>
+
+<button onclick="voiceType=8">
+👽 Инопланетянин
+</button>
+
+<button onclick="voiceType=9">
+🐿️ Бурундучок
+</button>
+
+<button onclick="voiceType=10">
+🧙 Волшебник
+</button>
+
+</div>
+
+<div
+class="status"
+id="voiceStatus"
+>
+Микрофон пока выключен.
+</div>
+
+</div>
+
+
+
+<footer>
+😺 Чиби-котик • сделано с помощью HTML, CSS и JavaScript
+</footer>
+
+
 
 <script>
+
+/* =========================
+   АУДИО
+========================= */
+
+let audioContext=null;
+let master=null;
+let instrument="piano";
+
 const notes=[
-["C4",261.63],["D4",293.66],["E4",329.63],["F4",349.23],
-["G4",392],["A4",440],["B4",493.88],["C5",523.25]
+261.63,
+293.66,
+329.63,
+349.23,
+392,
+440,
+493.88,
+523.25
 ];
 
-let audio;
+function startAudio(){
 
-function note(f){
- audio ||= new AudioContext();
- let o=audio.createOscillator();
- let g=audio.createGain();
- o.frequency.value=f;
- o.connect(g);
- g.connect(audio.destination);
- g.gain.value=.25;
- o.start();
- g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+.35);
- o.stop(audio.currentTime+.36);
+if(!audioContext){
+
+audioContext=
+new (window.AudioContext ||
+window.webkitAudioContext)();
+
+master=
+audioContext.createGain();
+
+master.gain.value=.25;
+
+master.connect(
+audioContext.destination
+);
+
 }
 
-notes.forEach(n=>{
- let b=document.createElement("button");
- b.className="key";
- b.textContent=n[0];
- b.onclick=()=>note(n[1]);
- document.getElementById("piano").appendChild(b);
-});
-
-function dance(){
- let c=document.getElementById("cat");
- let t=document.getElementById("text");
- c.classList.add("dance");
- t.textContent="Тап-тап-тап! 🐾";
- setTimeout(()=>{
-  c.classList.remove("dance");
-  t.textContent="Нажми на котика!";
- },2200);
+if(
+audioContext.state==="suspended"
+){
+audioContext.resume();
 }
 
-document.getElementById("cat").onclick=dance;
-</script>
+}
 
-</body>
-</html>
+
+function playNote(freq,duration=.4){
+
+startAudio();
+
+let oscillator=
+audioContext.createOscillator();
+
+let gain=
+audioContext.createGain();
+
+
+if(instrument==="piano"){
+oscillator.type="triangle";
+}
+
+if(instrument==="dizi"){
+oscillator.type="sawtooth";
+}
+
+if(instrument==="harp"){
+oscillator.type="sine";
+}
+
+if(instrument==="guitar"){
+oscillator.type="triangle";
+}
+
+if(instrument==="balalaika"){
+oscillator.type="square";
+}
+
+if(instrument==="erhu"){
+oscillator.type="sine";
+}
+
+if(instrument==="guqin"){
+oscillator.type="triangle";
+}
+
+if(instrument==="drums"){
+oscillator.type="square";
+}
+
+
+oscillator.frequency.value=freq;
+
+gain.gain.setValueAtTime(
+0.001,
+audioContext.currentTime
+);
+
+gain.gain.exponentialRampToValueAtTime(
+0.22,
+audioContext.currentTime+.03
+);
+
+gain.gain.exponentialRampToValueAtTime(
+0.001,
+audioContext.currentTime+duration
+);
+
+oscillator.connect(gain);
+
+gain.connect(master);
+
+oscillator.start();
+
+oscillator.stop(
+audioContext.currentTime+
+duration+.05
+);
+
+}
+
+
+/* =========================
+   МЯУКАНЬЕ
+========================= */
+
+function meow(freq){
+
+startAudio();
+
+let osc=
+audioContext.createOscillator();
+
+let gain=
+audioContext.createGain();
+
+osc.type="sine";
+
+osc.frequency.setValueAtTime(
+freq,
+audioContext.currentTime
+);
+
+osc.frequency.exponentialRampToValueAtTime(
+freq*1.45,
+audioContext.currentTime+.18
+);
+
+gain.gain.setValueAtTime(
+.001,
+audioContext.currentTime
+);
+
+gain.gain.exponentialRampToValueAtTime(
+.15,
+audioContext.currentTime+.03
+);
+
+gain.gain.exponentialRampToValueAtTime(
+.001,
+audioContext.currentTime+.3
+);
+
+osc.connect(gain);
+gain.connect(master);
+
+osc.start();
+
+osc.stop(
+audioContext.currentTime+.32
+);
+
+}
+
+
+/* =========================
+   ПИАНИНО
+========================= */
+
+const pianoNames=[
+"До",
+"Ре",
+"Ми",
+"Фа",
+"Соль",
+"Ля",
+"Си",
+"До"
+];
+
+const piano=
+document.getElementById("piano");
+
+notes.forEach(
+(freq,index)=>{
+
+let key=
+document.createElement("button");
+
+key.className="key";
+
+key.innerHTML=
+"<b>"+pianoNames[index]+"</b>";
+
+key.onclick=()=>{
+
+playNote(
+freq,
+.45
+);
+
+meow(
+freq*.72
+);
+
+};
+
+piano.appendChild(key);
+
+}
+);
+
+
+function setInstrument(name){
+
+instrument=name;
+
+}
+
+
+/* =========================
+   ТАНЦЫ
+========================= */
+
+const dances=[
+
+{
+className:"dance1",
+notes:[0,2,4,2,5,4,2,0],
+speed:240
+},
+
+{
+className:"dance2",
+notes:[0,1,3,5,4,2,6,4],
+speed:180
+},
+
+{
+className:"dance3",
+notes:[7,5,4,2,0,2,4,5],
+speed:145
+}
+
+];
+
+
+let danceInterval=null;
+
+
+function dance(number){
+
+startAudio();
+
+clearInterval(
+danceInterval
+);
+
+const cat=
+document.getElementById("cat");
+
+cat.classList.remove(
+"dance1",
+"dance2",
+"dance3"
+);
+
+cat.classList.add(
+dances[number].className
+);
+
+
+const status=
+document.getElementById("status");
+
+status.innerText=
+"😺 Котик танцует! 15 секунд 🎵";
+
+
+let position=0;
+
+const music=
+dances[number];
+
+
+function musicStep(){
+
+let noteIndex=
+music.notes[
+position %
+music.notes.length
+];
+
+playNote(
+notes[noteIndex],
+.35
+);
+
+meow(
+notes[noteIndex]*.7
+);
+
+position++;
+
+}
+
+
+musicStep();
+
+danceInterval=
+setInterval(
+musicStep,
+music.speed
+);
+
+
+setTimeout(
+()=>{
+
+clearInterval(
+danceInterval
+);
+
+cat.classList.remove(
+"dance1",
+"dance2",
+"dance3"
+);
+
+status.innerText=
+"😺 Танец закончился!";
+
+},
+15000
+);
+
+}
+
+
+/* =========================
+   ГАРДЕРОБ
+========================= */
+
+const clothes=
+document.getElementById("clothes");
+
+
+function putHat(){
+
+clothes.innerHTML+=
+`
+<text
+x="95"
+y="55"
+text-anchor="middle"
+font-size="50"
+>
+🎩
+</text>
+`;
+
+}
+
+
+function putDress(){
+
+clothes.innerHTML+=
+`
+<text
+x="95"
+y="170"
+text-anchor="middle"
+font-size="65"
+>
+👗
+</text>
+`;
+
+}
+
+
+function putGlasses(){
+
+clothes.innerHTML+=
+`
+<text
+x="95"
+y="105"
+text-anchor="middle"
+font-size="35"
+>
+🕶️
+</text>
+`;
+
+}
+
+
+function removeClothes(){
+
+clothes.innerHTML="";
+
+}
+
+
+function saveClothes(){
+
+localStorage.setItem(
+"catClothes",
+clothes.innerHTML
+);
+
+alert(
+"Образ сохранён! 💾"
+);
+
+}
+
+
+function loadClothes(){
+
+clothes.innerHTML=
+localStorage.getItem(
+"catClothes"
+)||"";
+
+}
+
+
+/* =========================
+   РИСОВАНИЕ
+========================= */
+
+const canvas=
+document.getElementById("canvas");
+
+const ctx=
+canvas.getContext("2d");
+
+let drawing=false;
+
+let drawMode="pen";
+
+function resizeCanvas(){
+
+const rect=
+canvas.getBoundingClientRect();
+
+const scale=
+window.devicePixelRatio||1;
+
+canvas.width=
+rect.width*scale;
+
+canvas.height=
+rect.height*scale;
+
+ctx.scale(
+scale,
+scale
+);
+
+}
+
+resizeCanvas();
+
+
+window.addEventListener(
+"resize",
+resizeCanvas
+);
+
+
+function getPosition(event){
+
+const rect=
+canvas.getBoundingClientRect();
+
+return {
+
+x:event.clientX-
+rect.left,
+
+y:event.clientY-
+rect.top
+
+};
+
+}
+
+
+canvas.addEventListener(
+"pointerdown",
+event=>{
+
+drawing=true;
+
+const p=
+getPosition(event);
+
+ctx.beginPath();
+
+ctx.moveTo(
+p.x,
+p.y
+);
+
+}
+);
+
+
+canvas.addEventListener(
+"pointermove",
+event=>{
+
+if(!drawing)return;
+
+const p=
+getPosition(event);
+
+const size=
+Number(
+document.getElementById(
+"brushSize"
+).value
+);
+
+const color=
+document.getElementById(
+"drawColor"
+).value;
+
+
+ctx.lineWidth=size;
+
+ctx.lineCap="round";
+
+ctx.strokeStyle=color;
+
+ctx.fillStyle=color;
+
+
+if(
+drawMode==="pen" ||
+drawMode==="paint"
+){
+
+ctx.lineTo(
+p.x,
+p.y
+);
+
+ctx.stroke();
+
+}
+
+else{
+
+let symbols={
+
+leopard:"●",
+cheetah:"•",
+snake:"⬡",
+hearts:"♥",
+flowers:"✿",
+zebra:"///",
+fish:"🐟"
+
+};
+
+ctx.font=
+Math.max(
+14,
+size*2
+)+"px Arial";
+
+ctx.fillText(
+symbols[drawMode],
+p.x,
+p.y
+);
+
+}
+
+}
+);
+
+
+window.addEventListener(
+"pointerup",
+()=>drawing=false
+);
+
+
+function clearCanvas(){
+
+ctx.clearRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+}
+
+
+function putDrawingOnCat(){
+
+document
+.getElementById("catDrawing")
+.innerHTML=
+`
+<text
+x="95"
+y="150"
+text-anchor="middle"
+font-size="35"
+>
+🎨✨
+</text>
+`;
+
+document.getElementById(
+"status"
+).innerText=
+"🎨 Котик надел твой рисунок!";
+
+}
+
+
+/* =========================
+   ФОН
+========================= */
+
+function setBackground(type){
+
+const stage=
+document.getElementById(
+"stage"
+);
+
+const sun=
+document.getElementById(
+"sun"
+);
+
+const moon=
+document.getElementById(
+"moon"
+);
+
+const road=
+document.getElementById(
+"road"
+);
+
+
+sun.classList.add(
+"hidden"
+);
+
+moon.classList.add(
+"hidden"
+);
+
+road.classList.add(
+"hidden"
+);
+
+
+if(type==="day"){
+
+stage.style.background=
+"linear-gradient(#91d8ff 0 60%,#79c866 60%)";
+
+sun.classList.remove(
+"hidden"
+);
+
+}
+
+if(type==="night"){
+
+stage.style.background=
+"linear-gradient(#172650 0 60%,#263b53 60%)";
+
+moon.classList.remove(
+"hidden"
+);
+
+}
+
+if(type==="street"){
+
+stage.style.background=
+"linear-gradient(#91d8ff 0 60%,#777 60%)";
+
+sun.classList.remove(
+"hidden"
+);
+
+road.classList.remove(
+"hidden"
+);
+
+}
+
+if(type==="park"){
+
+stage.style.background=
+"linear-gradient(#9bddff 0 55%,#64c85e 55%)";
+
+sun.classList.remove(
+"hidden"
+);
+
+}
+
+if(type==="home"){
+
+stage.style.background=
+"linear-gradient(#f0d4bd 0 60%,#ae7754 60%)";
+
+}
+
+if(type==="club"){
+
+stage.style.background=
+"linear-gradient(120deg,#4c2170,#185d76)";
+
+}
+
+}
+
+
+function customBackground(color){
+
+document.getElementById(
+"stage"
+).style.background=
+color;
+
+}
+
+
+function addObject(symbol){
+
+const object=
+document.createElement("div");
+
+object.innerText=symbol;
+
+object.style.position="absolute";
+
+object.style.fontSize="45px";
+
+object.style.left=
+(10+Math.random()*75)+"%";
+
+object.style.bottom=
+(30+Math.random()*120)+"px";
+
+object.style.zIndex="2";
+
+document
+.getElementById(
+"extraObjects"
+)
+.appendChild(object);
+
+}
+
+
+/* =========================
+   ЕДА
+========================= */
+
+const foods=[
+
+"🍦",
+"🥧",
+"🍲",
+"🍔",
+"🍭",
+"🍟",
+"🍣",
+"🍕",
+"🥤",
+"🍞",
+"🐟",
+"🪽",
+"🦈",
+"🐡",
+"🐠",
+"🐋",
+"🐳",
+"🎣",
+"🦖",
+"🐆",
+"🍜",
+"🍩",
+"🍉",
+"🧁",
+"🥟",
+"🍙",
+"🌮",
+"🍪",
+"🍓",
+"🍫"
+
+];
+
+
+const foodGrid=
+document.getElementById(
+"foodGrid"
+);
+
+
+foods.forEach(
+(food,index)=>{
+
+const button=
+document.createElement(
+"button"
+);
+
+button.className="food";
+
+button.innerText=food;
+
+button.onclick=
+()=>eatFood(food);
+
+foodGrid.appendChild(
+button
+);
+
+}
+);
+
+
+function eatFood(food){
+
+const status=
+document.getElementById(
+"foodStatus"
+);
+
+status.innerText=
+"😋 Котик достал "+
+food+
+" и кушает!";
+
+const cat=
+document.getElementById(
+"cat"
+);
+
+cat.animate(
+[
+{transform:"translateX(-50%)"},
+{transform:"translateX(-50%) translateY(-12px)"},
+{transform:"translateX(-50%)"}
+],
+{
+duration:600,
+iterations:3
+}
+);
+
+meow(
+400+Math.random()*150
+);
+
+}
+
+
+function randomFood(){
+
+const food=
+foods[
+Math.floor(
+Math.random()*foods.length
+)
+];
+
+eatFood(food);
+
+}
+
+
+/* =========================
+   ПОДАРКИ
+========================= */
+
+const gifts=[
+
+["💍","кольцо"],
+["💐","цветы"],
+["🎂","торт"],
+["🪳","таракан Вася"],
+["🧸","игрушка"],
+["💌","открытка"],
+["🚗","машинка"],
+["🏠","дом"],
+["🎈","шарик"],
+["🧁","кекс"]
+
+];
+
+
+function randomGift(){
+
+const gift=
+gifts[
+Math.floor(
+Math.random()*gifts.length
+)
+];
+
+document.getElementById(
+"giftStatus"
+).innerText=
+"🎁 Котик открыл подарок: "+
+gift[0]+" "+gift[1]+"!";
+
+}
+
+
+function giveGift(){
+
+const gift=
+gifts[
+Math.floor(
+Math.random()*gifts.length
+)
+];
+
+const status=
+document.getElementById(
+"giftStatus"
+);
+
+status.innerText=
+"🎀 Котик достал мешок и дарит тебе "+
+gift[0]+" "+gift[1]+"! Нажми на экран в течение 5 секунд!";
+
+let received=false;
+
+
+function receive(){
+
+if(received)return;
+
+received=true;
+
+status.innerText=
+"✨ Ты получил(а) "+
+gift[1]+"!";
+
+}
+
+
+document.addEventListener(
+"click",
+receive,
+{
+once:true
+}
+);
+
+
+setTimeout(
+()=>{
+
+if(!received){
+
+status.innerText=
+"🥺 Подарок улетел... Котик погрустил, но вернулся.";
+
+}
+
+},
+5000
+);
+
+}
+
+
+/* =========================
+ 
