@@ -1,10 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>😺 Чиби-котик</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Чиби-котик</title>
 
 <style>
 *{
@@ -13,1023 +12,904 @@
 
 body{
   margin:0;
+  background:#ffe8d5;
+  color:#51372d;
   font-family:Arial,sans-serif;
-  background:#ffe8d6;
-  color:#51372e;
+  text-align:center;
+}
+
+main{
+  max-width:720px;
+  margin:auto;
+  padding:14px;
+}
+
+.card{
+  background:#fffaf6;
+  border-radius:25px;
+  padding:16px;
+  margin:14px 0;
+  box-shadow:0 4px 18px #0001;
 }
 
 h1{
-  text-align:center;
-  margin:15px 0 5px;
+  font-size:38px;
+  margin:10px;
 }
 
-.subtitle{
-  text-align:center;
-  color:#80665c;
+.sub{
+  font-size:18px;
+  color:#82685c;
 }
 
-.panel{
-  background:#ffffffdd;
-  margin:12px;
-  padding:12px;
-  border-radius:20px;
-  box-shadow:0 5px 18px #0002;
-}
-
-.stage{
-  height:390px;
-  position:relative;
-  overflow:hidden;
-  border-radius:22px;
-  background:linear-gradient(
-    #91d8ff 0 60%,
-    #79c866 60%
-  );
-}
-
-.sun{
-  position:absolute;
-  right:25px;
-  top:20px;
-  font-size:60px;
-}
-
-.moon{
-  position:absolute;
-  left:25px;
-  top:20px;
-  font-size:55px;
-}
-
-.cloud{
-  position:absolute;
-  font-size:45px;
-}
-
-.cloud1{
-  left:12%;
-  top:70px;
-}
-
-.cloud2{
-  right:15%;
-  top:110px;
-}
-
-.road{
-  position:absolute;
-  bottom:-80px;
-  left:20%;
-  width:60%;
-  height:190px;
-  background:#666;
-  border-radius:50% 50% 0 0;
-}
-
-.cat{
-  position:absolute;
-  left:50%;
-  top:95px;
-  transform:translateX(-50%);
-  width:190px;
-  height:250px;
-  z-index:5;
-}
-
-.cat.dance1{
-  animation:dance1 .25s infinite alternate;
-}
-
-.cat.dance2{
-  animation:dance2 .5s infinite alternate;
-}
-
-.cat.dance3{
-  animation:dance3 .35s infinite alternate;
-}
-
-@keyframes dance1{
-  from{
-    transform:translateX(-50%) rotate(-9deg) translateY(4px);
-  }
-  to{
-    transform:translateX(-50%) rotate(9deg) translateY(-12px);
-  }
-}
-
-@keyframes dance2{
-  from{
-    transform:translateX(-50%) rotate(12deg);
-  }
-  to{
-    transform:translateX(-50%) rotate(-12deg) translateY(-10px);
-  }
-}
-
-@keyframes dance3{
-  from{
-    transform:translateX(-50%) translateX(-14px) rotate(-6deg);
-  }
-  to{
-    transform:translateX(-50%) translateX(14px) rotate(6deg);
-  }
-}
-
-.status{
-  text-align:center;
-  min-height:24px;
-  margin:8px;
+button,
+select,
+input{
+  font:inherit;
 }
 
 button{
   border:0;
-  border-radius:13px;
-  padding:10px 13px;
-  margin:3px;
-  background:#ffd7c2;
-  color:#50352d;
+  border-radius:16px;
+  padding:12px 15px;
+  margin:5px;
+  background:#ffd0c1;
+  color:#51372d;
   font-weight:bold;
-  font-size:14px;
+  cursor:pointer;
 }
 
 button:active{
-  transform:scale(.95);
+  transform:scale(.96);
 }
 
-.primary{
-  background:#ff8968;
+.mainbtn{
+  background:#ff7b68;
   color:white;
 }
 
-.buttons{
-  text-align:center;
-}
+/* СЦЕНА */
 
-.section{
-  font-size:18px;
-  font-weight:bold;
-  margin-bottom:8px;
-}
-
-#piano{
+#scene{
+  height:430px;
+  border-radius:24px;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(
+    #8ed7f3 0 65%,
+    #77c95f 65%
+  );
   display:flex;
-  height:125px;
-  gap:3px;
+  align-items:flex-end;
+  justify-content:center;
+}
+
+#cat{
+  width:240px;
+  height:315px;
+  position:relative;
+  z-index:3;
+  transform-origin:50% 90%;
+}
+
+/* ТАНЦЫ */
+
+.d1{
+  animation:d1 .38s infinite alternate;
+}
+
+.d2{
+  animation:d2 .5s infinite alternate;
+}
+
+.d3{
+  animation:d3 .7s infinite alternate;
+}
+
+@keyframes d1{
+  to{
+    transform:translateY(-22px) rotate(-5deg);
+  }
+}
+
+@keyframes d2{
+  to{
+    transform:translateX(28px) rotate(6deg);
+  }
+}
+
+@keyframes d3{
+  to{
+    transform:rotate(12deg) translateY(-12px);
+  }
+}
+
+/* ОДЕЖДА */
+
+#clothes{
+  position:absolute;
+  inset:0;
+  font-size:50px;
+  z-index:5;
+  pointer-events:none;
+}
+
+/* ФОН */
+
+#sun{
+  position:absolute;
+  right:35px;
+  top:20px;
+  font-size:60px;
+}
+
+.cloud{
+  position:absolute;
+  font-size:55px;
+}
+
+#decor{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  font-size:48px;
+}
+
+.deco{
+  position:absolute;
+}
+
+.timer{
+  font-size:22px;
+  font-weight:bold;
+  margin:8px;
+}
+
+.status{
+  min-height:24px;
+  font-weight:bold;
+}
+
+/* ПИАНИНО */
+
+.keys{
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  gap:4px;
 }
 
 .key{
-  flex:1;
   background:white;
-  border:1px solid #bbb;
-  border-radius:0 0 10px 10px;
+  border:2px solid #bfaea6;
+  border-radius:10px;
+  height:80px;
+  padding:6px;
 }
 
 .key:active{
-  background:#ffc5a9;
-  transform:translateY(4px);
+  background:#ffd0c1;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:5px;
-}
+/* РИСОВАНИЕ */
 
-.food{
-  font-size:27px;
-  min-height:55px;
-}
-
-.hidden{
-  display:none;
-}
-
-canvas{
+#paint{
   width:100%;
-  height:250px;
+  height:240px;
+  border:3px dashed #c9aaa0;
+  border-radius:16px;
   background:white;
-  border-radius:15px;
   touch-action:none;
 }
 
-select,input{
-  margin:5px;
+.row{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
 }
 
-footer{
-  text-align:center;
-  font-size:12px;
-  padding:15px;
-  color:#80665c;
+.emoji{
+  font-size:45px;
+  min-height:58px;
+}
+
+audio{
+  margin-top:10px;
 }
 </style>
 </head>
 
 <body>
 
+<main>
+
 <h1>😺 Чиби-котик</h1>
 
-<div class="subtitle">
-Танцы • музыка • гардероб • еда • подарки
+<div class="sub">
+Танцы • музыка • гардероб • рисунки • еда • подарки
 </div>
 
 
-<!-- СЦЕНА -->
+<!-- ТАНЦЫ -->
 
-<div class="panel">
+<section class="card">
 
-<div class="stage" id="stage">
+<div id="scene">
 
-<div class="sun" id="sun">☀️</div>
-<div class="moon hidden" id="moon">🌙</div>
+<div id="sun">☀️</div>
 
-<div class="cloud cloud1">☁️</div>
-<div class="cloud cloud2">☁️</div>
+<div class="cloud"
+     style="left:45px;top:65px">
+☁️
+</div>
 
-<div class="road hidden" id="road"></div>
+<div class="cloud"
+     style="right:90px;top:105px">
+☁️
+</div>
 
-<div id="extraObjects"></div>
-
-
-<!-- ЧИБИ КОТ -->
-
-<div class="cat" id="cat">
-
-<svg viewBox="0 0 190 250">
-
-<!-- хвост -->
-
-<path
-d="M145 170
-Q180 155 158 125"
-fill="none"
-stroke="#f3ae69"
-stroke-width="15"
-stroke-linecap="round"
-/>
+<div id="decor"></div>
 
 
-<!-- тело -->
+<!-- КОТИК -->
+
+<div id="cat">
+
+<svg
+viewBox="0 0 240 315"
+width="240"
+height="315">
+
+<!-- тело и голова -->
 
 <path
 d="
-M60 80
-Q38 60 45 35
-L70 50
-
-Q95 30 120 50
-L145 35
-Q152 60 130 80
-
-Q150 105 143 160
-Q137 205 95 210
-Q53 205 47 160
-Q40 105 60 80
+M50 95
+L45 22
+L98 59
+Q120 48 142 59
+L195 22
+L190 95
+Q210 120 205 210
+Q196 285 120 292
+Q44 285 35 210
+Q30 120 50 95Z
 "
-fill="#f4b16b"
-stroke="#633f31"
-stroke-width="5"
-/>
-
-
-<!-- пузико -->
-
-<ellipse
-cx="95"
-cy="135"
-rx="32"
-ry="43"
-fill="#ffdda9"
-/>
+fill="#f4ae63"
+stroke="#704538"
+stroke-width="8"
+stroke-linejoin="round"/>
 
 
 <!-- ушки -->
 
 <path
-d="M60 65 L53 34 L77 51"
-fill="#f4b16b"
-stroke="#633f31"
-stroke-width="5"
-/>
+d="M56 72L52 39L80 60"
+fill="#ffc27c"/>
 
 <path
-d="M130 65 L137 34 L113 51"
-fill="#f4b16b"
-stroke="#633f31"
-stroke-width="5"
-/>
+d="M184 72L188 39L160 60"
+fill="#ffc27c"/>
 
 
 <!-- глаза -->
 
-<circle cx="76" cy="92" r="7"/>
-<circle cx="114" cy="92" r="7"/>
+<circle
+cx="82"
+cy="137"
+r="14"
+fill="#241b19"/>
+
+<circle
+cx="158"
+cy="137"
+r="14"
+fill="#241b19"/>
+
+
+<!-- животик -->
+
+<ellipse
+cx="120"
+cy="202"
+rx="52"
+ry="67"
+fill="#ffe0a5"/>
 
 
 <!-- нос -->
 
-<path
-d="M91 106
-Q95 101 99 106
-Q95 112 91 106"
-fill="#e8757b"
-/>
+<ellipse
+cx="120"
+cy="165"
+rx="9"
+ry="6"
+fill="#e77e87"/>
 
 
 <!-- улыбка -->
 
 <path
-d="M86 116 Q95 125 104 116"
+d="
+M120 171
+Q111 184 98 175
+M120 171
+Q129 184 142 175
+"
 fill="none"
-stroke="#633f31"
-stroke-width="3"
-/>
+stroke="#57372e"
+stroke-width="5"
+stroke-linecap="round"/>
 
 
 <!-- лапки -->
 
-<path
-d="M59 120 Q32 135 48 158"
-fill="none"
-stroke="#f4b16b"
-stroke-width="17"
-stroke-linecap="round"
-/>
+<ellipse
+cx="43"
+cy="210"
+rx="23"
+ry="43"
+fill="#f4ae63"/>
 
-<path
-d="M131 120 Q158 135 142 158"
-fill="none"
-stroke="#f4b16b"
-stroke-width="17"
-stroke-linecap="round"
-/>
+<ellipse
+cx="197"
+cy="210"
+rx="23"
+ry="43"
+fill="#f4ae63"/>
 
 
 <!-- ножки -->
 
-<path
-d="M70 177 Q62 208 78 212"
-fill="none"
-stroke="#f4b16b"
-stroke-width="20"
-stroke-linecap="round"
-/>
+<ellipse
+cx="87"
+cy="282"
+rx="27"
+ry="18"
+fill="#f4ae63"/>
+
+<ellipse
+cx="153"
+cy="282"
+rx="27"
+ry="18"
+fill="#f4ae63"/>
+
+
+<!-- хвост -->
 
 <path
-d="M120 177 Q128 208 112 212"
+d="
+M193 200
+Q233 165 225 228
+Q221 258 190 250
+"
 fill="none"
-stroke="#f4b16b"
+stroke="#704538"
 stroke-width="20"
-stroke-linecap="round"
-/>
+stroke-linecap="round"/>
 
-<!-- одежда -->
-
-<g id="clothes"></g>
-
-<!-- рисунок -->
-
-<g id="catDrawing"></g>
+<path
+d="
+M193 200
+Q233 165 225 228
+Q221 258 190 250
+"
+fill="none"
+stroke="#f4ae63"
+stroke-width="13"
+stroke-linecap="round"/>
 
 </svg>
 
-</div>
+
+<div id="clothes"></div>
 
 </div>
-
-
-<div class="status" id="status">
-Нажми на танец! Каждый танец длится 15 секунд.
 </div>
 
 
-<div class="buttons">
+<div id="status" class="status">
+Котик ждёт танца 🐾
+</div>
 
-<button class="primary" onclick="dance(0)">
+<div id="timer" class="timer">
+15
+</div>
+
+
+<div class="row">
+
+<button
+class="mainbtn"
+onclick="dance(1)">
 💃 Танец 1
 </button>
 
-<button onclick="dance(1)">
+<button
+onclick="dance(2)">
 🕺 Танец 2
 </button>
 
-<button onclick="dance(2)">
+<button
+onclick="dance(3)">
 ✨ Танец 3
 </button>
 
 </div>
 
-</div>
+</section>
 
 
 
 <!-- МУЗЫКА -->
 
-<div class="panel">
+<section class="card">
 
-<div class="section">
-🎹 Музыка
+<h2>🎹 Музыка</h2>
+
+<select id="instrument">
+
+<option>Пианино</option>
+<option>Дудочка</option>
+<option>Барабаны</option>
+<option>Арфа</option>
+<option>Гитара</option>
+<option>Балалайка</option>
+<option>Эрху</option>
+<option>Гуцинь</option>
+
+</select>
+
+<div
+class="keys"
+id="keys">
 </div>
 
-<div id="piano"></div>
-
-<div class="buttons">
-
-<button onclick="setInstrument('piano')">
-🎹 Пианино
-</button>
-
-<button onclick="setInstrument('dizi')">
-🪈 Ди-цзы
-</button>
-
-<button onclick="setInstrument('drums')">
-🥁 Барабаны
-</button>
-
-<button onclick="setInstrument('harp')">
-🪕 Арфа
-</button>
-
-<button onclick="setInstrument('guitar')">
-🎸 Гитара
-</button>
-
-<button onclick="setInstrument('balalaika')">
-🪕 Балалайка
-</button>
-
-<button onclick="setInstrument('erhu')">
-🎻 Эрху
-</button>
-
-<button onclick="setInstrument('guqin')">
-🎶 Гуцинь
-</button>
-
-</div>
-
-</div>
+</section>
 
 
 
 <!-- ГАРДЕРОБ -->
 
-<div class="panel">
+<section class="card">
 
-<div class="section">
-👗 Гардероб
-</div>
+<h2>👒 Гардероб</h2>
 
-<div class="buttons">
-
-<button onclick="putHat()">
-🎩 Шапка
+<button onclick="dress('🎩')">
+🎩 Шляпа
 </button>
 
-<button onclick="putDress()">
-👗 Одежда
+<button onclick="dress('👗')">
+👗 Платье
 </button>
 
-<button onclick="putGlasses()">
-🕶️ Аксессуар
+<button onclick="dress('🕶️')">
+🕶️ Очки
 </button>
 
-<button onclick="removeClothes()">
-🧺 Снять
+<button onclick="dress('')">
+❌ Снять
 </button>
 
-<br>
-
-<button onclick="saveClothes()">
-💾 Сохранить образ
-</button>
-
-<button onclick="loadClothes()">
-📂 Загрузить образ
-</button>
-
-</div>
-
-</div>
+</section>
 
 
 
 <!-- РИСОВАНИЕ -->
 
-<div class="panel">
+<section class="card">
 
-<div class="section">
-🎨 Нарисуй одежду или аксессуар
-</div>
-
-<div class="buttons">
-
-Цвет:
+<h2>🎨 Рисование</h2>
 
 <input
+id="clr"
 type="color"
-id="drawColor"
-value="#ff4f7b"
-/>
-
-Размер:
+value="#ff4f8b">
 
 <input
+id="sz"
 type="range"
-id="brushSize"
 min="2"
-max="40"
-value="8"
-/>
-
-</div>
+max="35"
+value="8">
 
 
-<div class="buttons">
+<div class="row">
 
-<button onclick="drawMode='pen'">
-✏️ Ручка
+<button onclick="stamp('❤️')">
+❤️
 </button>
 
-<button onclick="drawMode='paint'">
-🖌️ Краска
+<button onclick="stamp('🌸')">
+🌸
 </button>
 
-<button onclick="drawMode='leopard'">
-🐆 Леопард
+<button onclick="stamp('🐆')">
+🐆
 </button>
 
-<button onclick="drawMode='cheetah'">
-🐆 Гепард
+<button onclick="stamp('🐍')">
+🐍
 </button>
 
-<button onclick="drawMode='snake'">
-🐍 Змея
+<button onclick="stamp('🦓')">
+🦓
 </button>
 
-<button onclick="drawMode='hearts'">
-💗 Сердечки
+<button onclick="stamp('🐟')">
+🐟
 </button>
 
-<button onclick="drawMode='flowers'">
-🌸 Цветы
-</button>
-
-<button onclick="drawMode='zebra'">
-🦓 Зебра
-</button>
-
-<button onclick="drawMode='fish'">
-🐟 Рыбки
+<button onclick="clearPaint()">
+🧽
 </button>
 
 </div>
 
 
-<canvas id="canvas"></canvas>
+<canvas id="paint"></canvas>
 
-
-<div class="buttons">
-
-<button onclick="clearCanvas()">
-🧽 Очистить
-</button>
-
-<button class="primary" onclick="putDrawingOnCat()">
-🐱 Надеть рисунок
-</button>
-
-</div>
-
-</div>
+</section>
 
 
 
 <!-- ФОН -->
 
-<div class="panel">
+<section class="card">
 
-<div class="section">
-🌈 Создание фона
-</div>
+<h2>🌳 Фон</h2>
 
-<div class="buttons">
+<div class="row">
 
-<button onclick="setBackground('day')">
+<button onclick="bg('day')">
 ☀️ День
 </button>
 
-<button onclick="setBackground('night')">
+<button onclick="bg('night')">
 🌙 Ночь
 </button>
 
-<button onclick="setBackground('street')">
-🛣️ Улица
+<button onclick="bg('street')">
+🏙️ Улица
 </button>
 
-<button onclick="setBackground('park')">
+<button onclick="bg('park')">
 🌳 Парк
 </button>
 
-<button onclick="setBackground('home')">
+<button onclick="bg('home')">
 🏠 Дом
 </button>
 
-<button onclick="setBackground('club')">
-🪩 Ночной клуб
-</button>
-
-<br>
-
-<button onclick="addObject('🛣️')">
-🛣️ Дорога
-</button>
-
-<button onclick="addObject('☁️')">
-☁️ Облако
-</button>
-
-<button onclick="addObject('🏮')">
-🏮 Фонарь
-</button>
-
-<button onclick="addObject('🪑')">
-🪑 Лавочка
-</button>
-
-<button onclick="addObject('🌳')">
-🌳 Дерево
-</button>
-
-<button onclick="addObject('🏠')">
-🏠 Дом
+<button onclick="bg('club')">
+🎵 Клуб
 </button>
 
 </div>
 
-<br>
 
-<label>
-Свой цвет фона:
+<div class="row">
+
+<button onclick="addDecor('🛣️')">
+🛣️
+</button>
+
+<button onclick="addDecor('💡')">
+💡
+</button>
+
+<button onclick="addDecor('🪑')">
+🪑
+</button>
+
+<button onclick="addDecor('🏠')">
+🏠
+</button>
+
+<button onclick="addDecor('🌳')">
+🌳
+</button>
+
+<button onclick="decor.innerHTML=''">
+🧹
+</button>
+
+</div>
+
+
 <input
+id="bgcolor"
 type="color"
-onchange="customBackground(this.value)"
-/>
-</label>
+value="#8ed7f3"
+onchange="
+scene.style.background=this.value
+">
 
-</div>
+</section>
 
 
 
 <!-- ЕДА -->
 
-<div class="panel">
+<section class="card">
 
-<div class="section">
-🍽️ Бесконечная еда
-</div>
-
-<div class="buttons">
+<h2>🍕 Еда</h2>
 
 <button
-class="primary"
-onclick="randomFood()"
->
-🍴 Котик достаёт еду
+class="mainbtn"
+onclick="food()">
+
+🎲 Случайная еда
+
 </button>
 
-</div>
-
 <div
-class="grid"
-id="foodGrid"
->
+id="food"
+class="emoji">
+🍕
 </div>
 
-<div
-class="status"
-id="foodStatus"
->
-Выбери еду или нажми кнопку случайной еды.
-</div>
+<div id="foodname"></div>
 
-</div>
+</section>
 
 
 
 <!-- ПОДАРКИ -->
 
-<div class="panel">
+<section class="card">
 
-<div class="section">
-🎁 Подарки
-</div>
-
-<div class="buttons">
+<h2>🎁 Подарки</h2>
 
 <button
-class="primary"
-onclick="randomGift()"
->
-🎁 Котик открывает подарок
+class="mainbtn"
+onclick="gift()">
+
+🎁 Найти подарок
+
 </button>
 
-<button
-onclick="giveGift()"
->
-🎀 Подарок тебе
+<button onclick="give()">
+
+📦 Подарить тебе
+
 </button>
+
+<div
+id="gift"
+class="emoji">
+
+🎁
 
 </div>
 
 <div
-class="status"
-id="giftStatus"
->
-Котик приготовил сюрпризы!
+id="giftmsg"
+class="status">
 </div>
 
-</div>
+</section>
 
 
 
 <!-- МИКРОФОН -->
 
-<div class="panel">
+<section class="card">
 
-<div class="section">
-🎤 Голос котика
-</div>
+<h2>🎤 Голос</h2>
 
-<div class="status">
-Разреши микрофон, скажи что-нибудь,
-и котик повторит это изменённым голосом.
-</div>
-
-<div class="buttons">
-
-<button
-class="primary"
-onclick="startRecording()"
->
-🎙️ Записать
+<button onclick="record()">
+🎙️ Записать / остановить
 </button>
 
-<button onclick="stopRecording()">
-⏹ Стоп
+<button onclick="funny()">
+🤖 Забавный голос
 </button>
-
-</div>
-
-
-<div class="buttons">
-
-<button onclick="voiceType=0">
-🏋️ Качок
-</button>
-
-<button onclick="voiceType=1">
-👸 Принцесса
-</button>
-
-<button onclick="voiceType=2">
-👶 Малыш
-</button>
-
-<button onclick="voiceType=3">
-🧓 Старичок
-</button>
-
-<button onclick="voiceType=4">
-🧛 Вампир
-</button>
-
-<button onclick="voiceType=5">
-🐭 Мультяшный
-</button>
-
-<button onclick="voiceType=6">
-🎤 Вокалоид
-</button>
-
-<button onclick="voiceType=7">
-🤖 Робот
-</button>
-
-<button onclick="voiceType=8">
-👽 Инопланетянин
-</button>
-
-<button onclick="voiceType=9">
-🐿️ Бурундучок
-</button>
-
-<button onclick="voiceType=10">
-🧙 Волшебник
-</button>
-
-</div>
 
 <div
-class="status"
-id="voiceStatus"
->
-Микрофон пока выключен.
+id="micmsg"
+class="status">
 </div>
 
-</div>
+<audio
+id="audio"
+controls
+style="width:100%;display:none">
+</audio>
 
+</section>
 
-
-<footer>
-😺 Чиби-котик • сделано с помощью HTML, CSS и JavaScript
-</footer>
+</main>
 
 
 
 <script>
 
+"use strict";
+
+
 /* =========================
    АУДИО
 ========================= */
 
-let audioContext=null;
-let master=null;
-let instrument="piano";
+let AC=null;
 
-const notes=[
-261.63,
-293.66,
-329.63,
-349.23,
-392,
-440,
-493.88,
-523.25
-];
+let rec=null;
 
-function startAudio(){
+let chunks=[];
 
-if(!audioContext){
+let giveTimer=null;
 
-audioContext=
-new (window.AudioContext ||
-window.webkitAudioContext)();
 
-master=
-audioContext.createGain();
+const $=x=>
+document.getElementById(x);
 
-master.gain.value=.25;
 
-master.connect(
-audioContext.destination
-);
-
-}
-
-if(
-audioContext.state==="suspended"
+function sound(
+frequency=440,
+duration=.18
 ){
-audioContext.resume();
-}
 
-}
-
-
-function playNote(freq,duration=.4){
-
-startAudio();
+AC=AC ||
+new(
+window.AudioContext ||
+window.webkitAudioContext
+)();
 
 let oscillator=
-audioContext.createOscillator();
+AC.createOscillator();
 
 let gain=
-audioContext.createGain();
+AC.createGain();
 
+oscillator.frequency.value=
+frequency;
 
-if(instrument==="piano"){
 oscillator.type="triangle";
-}
 
-if(instrument==="dizi"){
-oscillator.type="sawtooth";
-}
-
-if(instrument==="harp"){
-oscillator.type="sine";
-}
-
-if(instrument==="guitar"){
-oscillator.type="triangle";
-}
-
-if(instrument==="balalaika"){
-oscillator.type="square";
-}
-
-if(instrument==="erhu"){
-oscillator.type="sine";
-}
-
-if(instrument==="guqin"){
-oscillator.type="triangle";
-}
-
-if(instrument==="drums"){
-oscillator.type="square";
-}
-
-
-oscillator.frequency.value=freq;
-
-gain.gain.setValueAtTime(
-0.001,
-audioContext.currentTime
-);
-
-gain.gain.exponentialRampToValueAtTime(
-0.22,
-audioContext.currentTime+.03
-);
-
-gain.gain.exponentialRampToValueAtTime(
-0.001,
-audioContext.currentTime+duration
-);
+gain.gain.value=.07;
 
 oscillator.connect(gain);
 
-gain.connect(master);
+gain.connect(AC.destination);
 
 oscillator.start();
 
+gain.gain.exponentialRampToValueAtTime(
+.001,
+AC.currentTime+duration
+);
+
 oscillator.stop(
-audioContext.currentTime+
-duration+.05
+AC.currentTime+duration
 );
 
 }
+
+
+function meow(){
+
+sound(620,.22);
+
+}
+
 
 
 /* =========================
-   МЯУКАНЬЕ
+   ТАНЦЫ
 ========================= */
 
-function meow(freq){
+function dance(number){
 
-startAudio();
+clearInterval(window.danceTimer);
 
-let osc=
-audioContext.createOscillator();
+cat.className=
+"d"+number;
 
-let gain=
-audioContext.createGain();
+let time=15;
 
-osc.type="sine";
+timer.textContent=time;
 
-osc.frequency.setValueAtTime(
-freq,
-audioContext.currentTime
+status.textContent=
+"Танцуем! 🎵";
+
+
+let melodies={
+
+1:[392,440,494,523,494,440],
+
+2:[523,494,440,392,440,494],
+
+3:[659,587,523,587,659,784]
+
+};
+
+let melody=
+melodies[number];
+
+let index=0;
+
+
+sound(
+melody[0],
+.35
 );
 
-osc.frequency.exponentialRampToValueAtTime(
-freq*1.45,
-audioContext.currentTime+.18
+
+window.danceTimer=
+setInterval(function(){
+
+time--;
+
+timer.textContent=time;
+
+sound(
+melody[index%melody.length],
+.12
 );
 
-gain.gain.setValueAtTime(
-.001,
-audioContext.currentTime
-);
+index++;
 
-gain.gain.exponentialRampToValueAtTime(
-.15,
-audioContext.currentTime+.03
-);
 
-gain.gain.exponentialRampToValueAtTime(
-.001,
-audioContext.currentTime+.3
-);
+if(time<=0){
 
-osc.connect(gain);
-gain.connect(master);
+clearInterval(window.danceTimer);
 
-osc.start();
+cat.className="";
 
-osc.stop(
-audioContext.currentTime+.32
+timer.textContent=15;
+
+status.textContent=
+"Танец закончен! 🐾";
+
+}
+
+},1000);
+
+}
+
+
+
+/* =========================
+   ГАРДЕРОБ
+========================= */
+
+function dress(item){
+
+clothes.textContent=item;
+
+localStorage.setItem(
+"clothes",
+item
 );
 
 }
+
+
+/* загрузка одежды */
+
+clothes.textContent=
+localStorage.getItem("clothes") ||
+"";
+
 
 
 /* =========================
    ПИАНИНО
 ========================= */
 
-const pianoNames=[
+const notes=[
+262,
+294,
+330,
+349,
+392,
+440,
+494,
+523
+];
+
+const names=[
 "До",
 "Ре",
 "Ми",
@@ -1040,253 +920,69 @@ const pianoNames=[
 "До"
 ];
 
-const piano=
-document.getElementById("piano");
 
 notes.forEach(
-(freq,index)=>{
+function(note,index){
 
-let key=
+let button=
 document.createElement("button");
 
-key.className="key";
+button.className="key";
 
-key.innerHTML=
-"<b>"+pianoNames[index]+"</b>";
+button.textContent=
+names[index];
 
-key.onclick=()=>{
+button.onclick=function(){
 
-playNote(
-freq,
-.45
+sound(
+note,
+.22
 );
 
-meow(
-freq*.72
-);
+meow();
 
 };
 
-piano.appendChild(key);
+keys.appendChild(button);
 
 }
 );
 
-
-function setInstrument(name){
-
-instrument=name;
-
-}
 
 
 /* =========================
-   ТАНЦЫ
+   ФОН
 ========================= */
 
-const dances=[
+function bg(type){
 
-{
-className:"dance1",
-notes:[0,2,4,2,5,4,2,0],
-speed:240
-},
+scene.className=type;
 
-{
-className:"dance2",
-notes:[0,1,3,5,4,2,6,4],
-speed:180
-},
-
-{
-className:"dance3",
-notes:[7,5,4,2,0,2,4,5],
-speed:145
-}
-
-];
-
-
-let danceInterval=null;
-
-
-function dance(number){
-
-startAudio();
-
-clearInterval(
-danceInterval
-);
-
-const cat=
-document.getElementById("cat");
-
-cat.classList.remove(
-"dance1",
-"dance2",
-"dance3"
-);
-
-cat.classList.add(
-dances[number].className
-);
-
-
-const status=
-document.getElementById("status");
-
-status.innerText=
-"😺 Котик танцует! 15 секунд 🎵";
-
-
-let position=0;
-
-const music=
-dances[number];
-
-
-function musicStep(){
-
-let noteIndex=
-music.notes[
-position %
-music.notes.length
-];
-
-playNote(
-notes[noteIndex],
-.35
-);
-
-meow(
-notes[noteIndex]*.7
-);
-
-position++;
+scene.style.background="";
 
 }
 
 
-musicStep();
+function addDecor(symbol){
 
-danceInterval=
-setInterval(
-musicStep,
-music.speed
-);
+let element=
+document.createElement("span");
 
+element.className="deco";
 
-setTimeout(
-()=>{
+element.textContent=
+symbol;
 
-clearInterval(
-danceInterval
-);
+element.style.left=
+(10+Math.random()*75)+"%";
 
-cat.classList.remove(
-"dance1",
-"dance2",
-"dance3"
-);
+element.style.top=
+(20+Math.random()*60)+"%";
 
-status.innerText=
-"😺 Танец закончился!";
-
-},
-15000
-);
+decor.appendChild(element);
 
 }
 
-
-/* =========================
-   ГАРДЕРОБ
-========================= */
-
-const clothes=
-document.getElementById("clothes");
-
-
-function putHat(){
-
-clothes.innerHTML+=
-`
-<text
-x="95"
-y="55"
-text-anchor="middle"
-font-size="50"
->
-🎩
-</text>
-`;
-
-}
-
-
-function putDress(){
-
-clothes.innerHTML+=
-`
-<text
-x="95"
-y="170"
-text-anchor="middle"
-font-size="65"
->
-👗
-</text>
-`;
-
-}
-
-
-function putGlasses(){
-
-clothes.innerHTML+=
-`
-<text
-x="95"
-y="105"
-text-anchor="middle"
-font-size="35"
->
-🕶️
-</text>
-`;
-
-}
-
-
-function removeClothes(){
-
-clothes.innerHTML="";
-
-}
-
-
-function saveClothes(){
-
-localStorage.setItem(
-"catClothes",
-clothes.innerHTML
-);
-
-alert(
-"Образ сохранён! 💾"
-);
-
-}
-
-
-function loadClothes(){
-
-clothes.innerHTML=
-localStorage.getItem(
-"catClothes"
-)||"";
-
-}
 
 
 /* =========================
@@ -1294,37 +990,36 @@ localStorage.getItem(
 ========================= */
 
 const canvas=
-document.getElementById("canvas");
+$("paint");
 
 const ctx=
 canvas.getContext("2d");
 
-let drawing=false;
-
-let drawMode="pen";
 
 function resizeCanvas(){
 
-const rect=
+let rect=
 canvas.getBoundingClientRect();
 
-const scale=
-window.devicePixelRatio||1;
+let dpr=
+window.devicePixelRatio || 1;
 
 canvas.width=
-rect.width*scale;
+rect.width*dpr;
 
 canvas.height=
-rect.height*scale;
+rect.height*dpr;
 
-ctx.scale(
-scale,
-scale
+ctx.setTransform(
+dpr,
+0,
+0,
+dpr,
+0,
+0
 );
 
 }
-
-resizeCanvas();
 
 
 window.addEventListener(
@@ -1332,39 +1027,36 @@ window.addEventListener(
 resizeCanvas
 );
 
+setTimeout(
+resizeCanvas,
+100
+);
 
-function getPosition(event){
 
-const rect=
-canvas.getBoundingClientRect();
+let drawing=false;
 
-return {
+let lastX=0;
 
-x:event.clientX-
-rect.left,
-
-y:event.clientY-
-rect.top
-
-};
-
-}
+let lastY=0;
 
 
 canvas.addEventListener(
 "pointerdown",
-event=>{
+function(event){
 
 drawing=true;
 
-const p=
-getPosition(event);
+let rect=
+canvas.getBoundingClientRect();
 
-ctx.beginPath();
+lastX=
+event.clientX-rect.left;
 
-ctx.moveTo(
-p.x,
-p.y
+lastY=
+event.clientY-rect.top;
+
+canvas.setPointerCapture(
+event.pointerId
 );
 
 }
@@ -1373,88 +1065,78 @@ p.y
 
 canvas.addEventListener(
 "pointermove",
-event=>{
+function(event){
 
-if(!drawing)return;
+if(!drawing)
+return;
 
-const p=
-getPosition(event);
+let rect=
+canvas.getBoundingClientRect();
 
-const size=
-Number(
-document.getElementById(
-"brushSize"
-).value
+let x=
+event.clientX-rect.left;
+
+let y=
+event.clientY-rect.top;
+
+
+ctx.strokeStyle=
+clr.value;
+
+ctx.lineWidth=
+Number(sz.value);
+
+ctx.lineCap=
+"round";
+
+ctx.lineJoin=
+"round";
+
+
+ctx.beginPath();
+
+ctx.moveTo(
+lastX,
+lastY
 );
 
-const color=
-document.getElementById(
-"drawColor"
-).value;
-
-
-ctx.lineWidth=size;
-
-ctx.lineCap="round";
-
-ctx.strokeStyle=color;
-
-ctx.fillStyle=color;
-
-
-if(
-drawMode==="pen" ||
-drawMode==="paint"
-){
-
 ctx.lineTo(
-p.x,
-p.y
+x,
+y
 );
 
 ctx.stroke();
 
-}
 
-else{
+lastX=x;
 
-let symbols={
-
-leopard:"●",
-cheetah:"•",
-snake:"⬡",
-hearts:"♥",
-flowers:"✿",
-zebra:"///",
-fish:"🐟"
-
-};
-
-ctx.font=
-Math.max(
-14,
-size*2
-)+"px Arial";
-
-ctx.fillText(
-symbols[drawMode],
-p.x,
-p.y
-);
-
-}
+lastY=y;
 
 }
 );
 
 
-window.addEventListener(
+canvas.addEventListener(
 "pointerup",
-()=>drawing=false
+function(){
+
+drawing=false;
+
+}
 );
 
 
-function clearCanvas(){
+canvas.addEventListener(
+"pointercancel",
+function(){
+
+drawing=false;
+
+}
+);
+
+
+function clearPaint(){
 
 ctx.clearRect(
 0,
@@ -1466,171 +1148,31 @@ canvas.height
 }
 
 
-function putDrawingOnCat(){
+function stamp(symbol){
 
-document
-.getElementById("catDrawing")
-.innerHTML=
-`
-<text
-x="95"
-y="150"
-text-anchor="middle"
-font-size="35"
->
-🎨✨
-</text>
-`;
+ctx.font=
+"36px sans-serif";
 
-document.getElementById(
-"status"
-).innerText=
-"🎨 Котик надел твой рисунок!";
+for(
+let i=0;
+i<7;
+i++
+){
 
-}
+ctx.fillText(
+symbol,
+Math.random()*
+(canvas.clientWidth-40),
 
-
-/* =========================
-   ФОН
-========================= */
-
-function setBackground(type){
-
-const stage=
-document.getElementById(
-"stage"
+35+
+Math.random()*
+(canvas.clientHeight-45)
 );
-
-const sun=
-document.getElementById(
-"sun"
-);
-
-const moon=
-document.getElementById(
-"moon"
-);
-
-const road=
-document.getElementById(
-"road"
-);
-
-
-sun.classList.add(
-"hidden"
-);
-
-moon.classList.add(
-"hidden"
-);
-
-road.classList.add(
-"hidden"
-);
-
-
-if(type==="day"){
-
-stage.style.background=
-"linear-gradient(#91d8ff 0 60%,#79c866 60%)";
-
-sun.classList.remove(
-"hidden"
-);
-
-}
-
-if(type==="night"){
-
-stage.style.background=
-"linear-gradient(#172650 0 60%,#263b53 60%)";
-
-moon.classList.remove(
-"hidden"
-);
-
-}
-
-if(type==="street"){
-
-stage.style.background=
-"linear-gradient(#91d8ff 0 60%,#777 60%)";
-
-sun.classList.remove(
-"hidden"
-);
-
-road.classList.remove(
-"hidden"
-);
-
-}
-
-if(type==="park"){
-
-stage.style.background=
-"linear-gradient(#9bddff 0 55%,#64c85e 55%)";
-
-sun.classList.remove(
-"hidden"
-);
-
-}
-
-if(type==="home"){
-
-stage.style.background=
-"linear-gradient(#f0d4bd 0 60%,#ae7754 60%)";
-
-}
-
-if(type==="club"){
-
-stage.style.background=
-"linear-gradient(120deg,#4c2170,#185d76)";
 
 }
 
 }
 
-
-function customBackground(color){
-
-document.getElementById(
-"stage"
-).style.background=
-color;
-
-}
-
-
-function addObject(symbol){
-
-const object=
-document.createElement("div");
-
-object.innerText=symbol;
-
-object.style.position="absolute";
-
-object.style.fontSize="45px";
-
-object.style.left=
-(10+Math.random()*75)+"%";
-
-object.style.bottom=
-(30+Math.random()*120)+"px";
-
-object.style.zIndex="2";
-
-document
-.getElementById(
-"extraObjects"
-)
-.appendChild(object);
-
-}
 
 
 /* =========================
@@ -1639,117 +1181,58 @@ document
 
 const foods=[
 
-"🍦",
-"🥧",
-"🍲",
-"🍔",
-"🍭",
-"🍟",
-"🍣",
-"🍕",
-"🥤",
-"🍞",
-"🐟",
-"🪽",
-"🦈",
-"🐡",
-"🐠",
-"🐋",
-"🐳",
-"🎣",
-"🦖",
-"🐆",
-"🍜",
-"🍩",
-"🍉",
-"🧁",
-"🥟",
-"🍙",
-"🌮",
-"🍪",
-"🍓",
-"🍫"
+["🍦","мороженое"],
+["🥧","пирог"],
+["🍲","суп"],
+["🍔","бургер"],
+["🍭","леденец"],
+["🍟","картошка фри"],
+["🍣","суши"],
+["🍕","пицца"],
+["🥤","квас"],
+["🥖","хлеб"],
+["🐟","рыба"],
+["🦈","акула"],
+["🐡","рыба-ёж"],
+["🐠","рыбка бетта"],
+["🐋","синий кит"],
+["🐳","косатка"],
+["🦑","глубоководная рыбка"],
+["🦕","динозавр"],
+["🦁","лев"],
+["🐆","ягуар"],
+["🐈‍⬛","чёрная пантера"],
+["🌮","тако"],
+["🧁","кекс"],
+["🍉","арбуз"],
+["🍩","пончик"],
+["🥭","манго"]
 
 ];
 
 
-const foodGrid=
-document.getElementById(
-"foodGrid"
-);
+function food(){
 
-
-foods.forEach(
-(food,index)=>{
-
-const button=
-document.createElement(
-"button"
-);
-
-button.className="food";
-
-button.innerText=food;
-
-button.onclick=
-()=>eatFood(food);
-
-foodGrid.appendChild(
-button
-);
-
-}
-);
-
-
-function eatFood(food){
-
-const status=
-document.getElementById(
-"foodStatus"
-);
-
-status.innerText=
-"😋 Котик достал "+
-food+
-" и кушает!";
-
-const cat=
-document.getElementById(
-"cat"
-);
-
-cat.animate(
-[
-{transform:"translateX(-50%)"},
-{transform:"translateX(-50%) translateY(-12px)"},
-{transform:"translateX(-50%)"}
-],
-{
-duration:600,
-iterations:3
-}
-);
-
-meow(
-400+Math.random()*150
-);
-
-}
-
-
-function randomFood(){
-
-const food=
+let item=
 foods[
 Math.floor(
 Math.random()*foods.length
 )
 ];
 
-eatFood(food);
+
+$("food").textContent=
+item[0];
+
+$("foodname").textContent=
+"Котик получил: "+
+item[1]+
+" 😋";
+
+meow();
 
 }
+
 
 
 /* =========================
@@ -1758,88 +1241,117 @@ eatFood(food);
 
 const gifts=[
 
-["💍","кольцо"],
-["💐","цветы"],
-["🎂","торт"],
-["🪳","таракан Вася"],
-["🧸","игрушка"],
-["💌","открытка"],
-["🚗","машинка"],
-["🏠","дом"],
-["🎈","шарик"],
-["🧁","кекс"]
+"💍",
+"💐",
+"🎂",
+"🪳",
+"🧸",
+"💌",
+"🚗",
+"🏠",
+"🎨",
+"🧩"
 
 ];
 
 
-function randomGift(){
+function gift(){
 
-const gift=
+let item=
 gifts[
 Math.floor(
 Math.random()*gifts.length
 )
 ];
 
-document.getElementById(
-"giftStatus"
-).innerText=
-"🎁 Котик открыл подарок: "+
-gift[0]+" "+gift[1]+"!";
+$("gift").textContent=
+item;
+
+$("giftmsg").textContent=
+"Котик открыл подарок! 🎉";
 
 }
 
 
-function giveGift(){
 
-const gift=
-gifts[
-Math.floor(
-Math.random()*gifts.length
-)
-];
+/* подарок пользователю */
 
-const status=
-document.getElementById(
-"giftStatus"
-);
+function give(){
 
-status.innerText=
-"🎀 Котик достал мешок и дарит тебе "+
-gift[0]+" "+gift[1]+"! Нажми на экран в течение 5 секунд!";
+clearTimeout(giveTimer);
 
-let received=false;
+$("gift").textContent=
+"🎁";
+
+$("giftmsg").textContent=
+"Нажми на подарок за 5 секунд! ⏳";
 
 
-function receive(){
+let finished=false;
 
-if(received)return;
 
-received=true;
+let clickHandler=
+function(event){
 
-status.innerText=
-"✨ Ты получил(а) "+
-gift[1]+"!";
-
+if(
+event.target.closest &&
+event.target.closest("#giveBtn")
+){
+return;
 }
 
 
-document.addEventListener(
+if(finished)
+return;
+
+
+finished=true;
+
+clearTimeout(giveTimer);
+
+$("gift").textContent=
+"✨🎁✨";
+
+$("giftmsg").textContent=
+"Подарок пойман! Котик рад 😺";
+
+document.removeEventListener(
 "click",
-receive,
-{
-once:true
-}
+clickHandler
 );
+
+};
 
 
 setTimeout(
-()=>{
+function(){
 
-if(!received){
+document.addEventListener(
+"click",
+clickHandler
+);
 
-status.innerText=
-"🥺 Подарок улетел... Котик погрустил, но вернулся.";
+},
+50
+);
+
+
+giveTimer=
+setTimeout(
+function(){
+
+if(!finished){
+
+$("gift").textContent=
+"💨🎁";
+
+$("giftmsg").textContent=
+"Ой! Подарок улетел, котик загрустил 🥺";
+
+document.removeEventListener(
+"click",
+clickHandler
+);
 
 }
 
@@ -1850,5 +1362,159 @@ status.innerText=
 }
 
 
+
 /* =========================
- 
+   МИКРОФОН
+========================= */
+
+async function record(){
+
+try{
+
+if(
+rec &&
+rec.state==="recording"
+){
+
+rec.stop();
+
+$("micmsg").textContent=
+"Готовлю запись...";
+
+return;
+
+}
+
+
+if(
+!navigator.mediaDevices ||
+!navigator.mediaDevices.getUserMedia
+){
+
+throw new Error(
+"microphone"
+);
+
+}
+
+
+let stream=
+await navigator.mediaDevices.getUserMedia({
+audio:true
+});
+
+
+chunks=[];
+
+
+rec=
+new MediaRecorder(stream);
+
+
+rec.ondataavailable=
+function(event){
+
+chunks.push(
+event.data
+);
+
+};
+
+
+rec.onstop=
+function(){
+
+stream
+.getTracks()
+.forEach(
+track=>track.stop()
+);
+
+
+let blob=
+new Blob(
+chunks,
+{
+type:"audio/webm"
+}
+);
+
+
+$("audio").src=
+URL.createObjectURL(blob);
+
+$("audio").style.display=
+"block";
+
+$("micmsg").textContent=
+"Запись готова! 🎤";
+
+};
+
+
+rec.start();
+
+$("micmsg").textContent=
+"Записываю... Нажми ещё раз.";
+
+}
+
+catch(error){
+
+$("micmsg").textContent=
+"Браузер не дал доступ к микрофону. Разреши микрофон.";
+
+}
+
+}
+
+
+
+/* =========================
+   ЗАБАВНЫЙ ГОЛОС
+========================= */
+
+function funny(){
+
+let audio=
+$("audio");
+
+
+if(!audio.src){
+
+$("micmsg").textContent=
+"Сначала запиши голос.";
+
+return;
+
+}
+
+
+const speeds=[
+.65,
+.8,
+1.25,
+1.5
+];
+
+
+audio.playbackRate=
+speeds[
+Math.floor(
+Math.random()*speeds.length
+)
+];
+
+audio.currentTime=0;
+
+audio.play();
+
+$("micmsg").textContent=
+"Включён случайный забавный голос 🤖";
+
+}
+
+</script>
+
+</body>
+</html>
