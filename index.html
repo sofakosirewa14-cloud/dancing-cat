@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>😺 Танцующий котик</title>
+<style>
+body{margin:0;background:#fff4e8;color:#5d3b2e;font-family:Arial,sans-serif;text-align:center}
+h1{margin:18px 0 5px;font-size:27px}
+p{color:#8a6657}
+.stage{margin:15px;height:45vh;min-height:280px;background:#ffe2c2;border-radius:28px;display:flex;align-items:center;justify-content:center}
+#cat{font-size:110px;border:0;background:none}
+.dance{animation:dance .22s infinite alternate}
+@keyframes dance{from{transform:rotate(-10deg) translateY(5px)}
+to{transform:rotate(10deg) translateY(-12px)}}
+button.play{background:#ff9b71;color:white;border:0;border-radius:18px;padding:13px 24px;font-size:19px;font-weight:bold}
+h3{margin-bottom:7px}
+.piano{display:flex;height:120px;margin:10px;gap:3px}
+.key{flex:1;background:white;border:1px solid #ccc;border-radius:0 0 9px 9px;font-size:12px}
+.key:active{background:#ffd8bd;transform:translateY(3px)}
+</style>
+</head>
+<body>
+
+<h1>😺 Танцующий котик</h1>
+<p id="text">Нажми на котика!</p>
+
+<div class="stage">
+<button id="cat">😺</button>
+</div>
+
+<button class="play" onclick="dance()">😸 ТАНЦУЙ!</button>
+
+<h3>🎹 Поиграй на пианино</h3>
+<div class="piano" id="piano"></div>
+
+<script>
+const notes=[
+["C4",261.63],["D4",293.66],["E4",329.63],["F4",349.23],
+["G4",392],["A4",440],["B4",493.88],["C5",523.25]
+];
+
+let audio;
+
+function note(f){
+ audio ||= new AudioContext();
+ let o=audio.createOscillator();
+ let g=audio.createGain();
+ o.frequency.value=f;
+ o.connect(g);
+ g.connect(audio.destination);
+ g.gain.value=.25;
+ o.start();
+ g.gain.exponentialRampToValueAtTime(.001,audio.currentTime+.35);
+ o.stop(audio.currentTime+.36);
+}
+
+notes.forEach(n=>{
+ let b=document.createElement("button");
+ b.className="key";
+ b.textContent=n[0];
+ b.onclick=()=>note(n[1]);
+ document.getElementById("piano").appendChild(b);
+});
+
+function dance(){
+ let c=document.getElementById("cat");
+ let t=document.getElementById("text");
+ c.classList.add("dance");
+ t.textContent="Тап-тап-тап! 🐾";
+ setTimeout(()=>{
+  c.classList.remove("dance");
+  t.textContent="Нажми на котика!";
+ },2200);
+}
+
+document.getElementById("cat").onclick=dance;
+</script>
+
+</body>
+</html>
